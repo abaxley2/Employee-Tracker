@@ -37,6 +37,12 @@ VALUES ("Assistant Principal", 80000, 1);
 INSERT INTO role (title, salary, department_id)
 VALUES ("Counselor", 70000, 1);
 
+INSERT INTO role (title, salary, department_id)
+VALUES ("Teacher", 40000, 2);
+
+INSERT INTO role (title, salary, department_id)
+VALUES ("Staff", 35000, 3);
+
 CREATE TABLE employee (
 id INT NOT NULL AUTO_INCREMENT,
 first_name VARCHAR(30) NOT NULL,
