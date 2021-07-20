@@ -11,7 +11,7 @@ const connection = mysql.createConnection({
   user: 'root',
 
   // Be sure to update with your own MySQL password!
-  password: 'Tuba1234',
+  password: "Tuba1234",
   database: 'employee_managementDB',
 });
 
@@ -55,7 +55,7 @@ connection.connect((err) => {
             addDepartment();
         } else if (response.direction === "Update Employee Roles") {
             console.log("You chose to Update Employee Roles...\n");
-            // updateRole();
+            updateRole();
         }
       })
   };
@@ -208,20 +208,27 @@ function updateRole() {
     inquirer
         .prompt([
             {
-                name: "roleDecision",
+                name: "updateName",
                 type: "list",
                 message: "What would you like to update?",
+                choices: ["Principal", "Assistant Principal", "Counselor", "Teacher", "Staff"]
+            },
+            {
+                name: "updateSalary",
+                type: "input",
+                message: "What is their new salary?"
             }
         ])
         .then((answer) => {
             connection.query(
-              'INSERT INTO department SET ?',
+              'UPDATE role SET ? WHERE ?',
               {
-                name: answer.departmentName,
+                title: answer.updateName,
+                salary: answer.updateSalary,
               },
               (err) => {
                 if (err) throw err;
-                console.log('Your department was created successfully!...\n');
+                console.log('Your role was updated successfully!...\n');
                 beginning();
               }
             );
